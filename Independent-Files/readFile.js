@@ -1,0 +1,18 @@
+const fs = require('fs');
+
+function readFileContent(filePath) {
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            if (err.code === 'ENOENT') {
+                console.error(`Error reading file: ${err.message}`);
+            } else {
+                console.error(`Error reading file: ${err.message}`);
+            }
+        } else {
+            console.log(`File content:\n${data || '(empty string)'}`);
+        }
+    });
+}
+
+readFileContent('test-files/nonexistent-file.txt');
+// Expected Output: Error reading file: ENOENT: no such file or directory...
